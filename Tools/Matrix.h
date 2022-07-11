@@ -15,8 +15,12 @@ public:
 	Matrix(const Matrix& m) {
 		mat = m.mat;
 	};
+	//need destructor because it's a big array
 	~Matrix() = default;
 
+	Matrix(std::array<float, 16> tab) {
+		mat = tab;
+	};
 	std::array<float, 16> getMatrix() const;
 	static std::array<float, 16> identity();
 	Matrix inverse() const;
