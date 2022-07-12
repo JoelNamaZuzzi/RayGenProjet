@@ -17,10 +17,11 @@ public:
 	};
 	//need destructor because it's a big array
 	~Matrix() = default;
-
 	Matrix(std::array<float, 16> tab) {
 		mat = tab;
 	};
+
+
 	std::array<float, 16> getMatrix() const;
 	static std::array<float, 16> identity();
 	Matrix inverse() const;
@@ -32,4 +33,4 @@ public:
 	Matrix operator*(const float& f) const;
 };
 std::ostream& operator<<(std::ostream& os, const Matrix& matrix);
-#endif //RAYGEN_MATRIX_H
+#endif RAYGEN_MATRIX_H
