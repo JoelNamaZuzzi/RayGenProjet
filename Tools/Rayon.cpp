@@ -19,3 +19,7 @@ void Rayon::Dir(Vector di) {
 Rayon Rayon::normalized() {
 	return Rayon(origin, dir.normalized());
 }
+
+std::ostream& operator<<(std::ostream& os, const Rayon& ray) {
+	return os << "(" << "Origin : " << ray.Origin() << " dir : " << ray.Dir() << std::endl;
+}
