@@ -9,9 +9,9 @@
 class Vector : public Point{
 public:
 	Vector() : Point(0, 0, 0) {};
-	Vector(const float& x, const float& y, const float& z) : Point(x, y, z) {};
+	Vector(const float &x, const float &y, const float &z) : Point(x, y, z) {};
 	Vector(const Vector &v) : Point(v) {};
-	Vector(const Point& p) : Point(p) {};
+	Vector(const Point &p) : Point(p) {};
 
 	float norm() const;
 
@@ -22,6 +22,6 @@ public:
 	}
 };
 
-std::ostream& operator<<(std::ostream& os, const Vector& v);
+std::ostream &operator<<(std::ostream &os, const Vector &v);
 
 #endif //RAYGEN_VECTOR_H

@@ -22,11 +22,11 @@ public:
 
     float& operator[](int i);
 
-    Point operator+(const Point& p) const;
+    Point operator+(const Point &p) const;
 
-    Point operator-(const Point& p) const;
+    Point operator-(const Point &p) const;
 
-    Point operator*(const Point& p) const;
+    Point operator*(const Point &p) const;
 
     Point operator-() const;
 
@@ -59,6 +59,6 @@ public:
     }
 };
 
-std::ostream& operator<<(std::ostream& os, const Point& p);
+std::ostream &operator<<(std::ostream &os, const Point &p);
 
 #endif RAYGEN_POINT_H

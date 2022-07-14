@@ -28,8 +28,8 @@ float &Matrix::operator()(const int i, const int j) {
 	return mat[i * 4 + j];
 }
 
-Matrix Matrix::operator*(const Matrix& var) const{
-	const Matrix& othermat = (*this);
+Matrix Matrix::operator*(const Matrix &var) const{
+	const Matrix &othermat = (*this);
 	Matrix res;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
@@ -39,7 +39,7 @@ Matrix Matrix::operator*(const Matrix& var) const{
 	return res;
 }
 
-Matrix Matrix::operator*(const float& var) const{
+Matrix Matrix::operator*(const float &var) const{
 	std::array<float, 16> res{};
 	for (int i = 0; i < 4; i++) {
 		res[i] = mat[i] * var;
@@ -55,7 +55,7 @@ Point Matrix::operator*(const Point &pts) const {
 	return res;
 }
 
-Vector Matrix::operator*(const Vector& vec) const {
+Vector Matrix::operator*(const Vector &vec) const {
 	Vector res;
 	for (int i = 0; i < 3; ++i) {
 		res[i] = (*this)(i, 0) * vec[0] + (*this)(i, 1) * vec[1] + (*this)(i, 2) * vec[2];
@@ -109,7 +109,7 @@ Matrix Matrix::inverse() const {
     return Matrix(matinv);
 }
 
-std::ostream& operator<<(std::ostream& os, const Matrix& matrix) {
+std::ostream &operator<<(std::ostream &os, const Matrix &matrix) {
 	std::array<float, 16> arr = matrix.getMatrix();
 	for (int i = 0; i < arr.size(); i++) {
 		if (i % 4 == 0) {

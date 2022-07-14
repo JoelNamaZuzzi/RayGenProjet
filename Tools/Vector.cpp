@@ -10,6 +10,6 @@ Vector Vector::normalized() const {
 	return { this->mx / val, this->my / val, this->mz / val };
 }
 
-std::ostream& operator<<(std::ostream& os, const Vector& v) {
+std::ostream &operator<<(std::ostream &os, const Vector &v) {
 	return os << "(" << v.X() << ", " << v.Y() << ", " << v.Z() << ") ";
 }

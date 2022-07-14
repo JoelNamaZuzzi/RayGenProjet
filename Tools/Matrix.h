@@ -12,10 +12,10 @@ public:
 	Matrix() {
 		mat = Matrix::identity();
 	};
-	Matrix(const Matrix& m) {
+	Matrix(const Matrix &m) {
 		mat = m.mat;
 	};
-	//need destructor because it's a big array
+
 	~Matrix() = default;
 	Matrix(std::array<float, 16> tab) {
 		mat = tab;
@@ -27,10 +27,10 @@ public:
 	Matrix inverse() const;
 	float operator()(const int& i, const int& j) const;
 	float& operator()(int i, int j);
-	Matrix operator*(const Matrix& mult) const;
-	Point operator*(const Point& p) const;
-	Vector operator*(const Vector& p) const;
-	Matrix operator*(const float& f) const;
+	Matrix operator*(const Matrix &mult) const;
+	Point operator*(const Point &p) const;
+	Vector operator*(const Vector &p) const;
+	Matrix operator*(const float &f) const;
 };
-std::ostream& operator<<(std::ostream& os, const Matrix& matrix);
+std::ostream &operator<<(std::ostream &os, const Matrix &matrix);
 #endif RAYGEN_MATRIX_H

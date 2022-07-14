@@ -26,5 +26,5 @@ public:
 	Rayon normalized();
 
 };
-std::ostream& operator<<(std::ostream& os, const Rayon& ray);
+std::ostream &operator<<(std::ostream &os, const Rayon &ray);
 #endif //RAYGEN_RAYON_H

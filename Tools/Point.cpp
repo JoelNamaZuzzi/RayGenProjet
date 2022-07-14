@@ -1,6 +1,6 @@
 #include "Point.h"
 
-float Point::dot(const Point& p) const {
+float Point::dot(const Point &p) const {
 	return this->mx * p.mx + this->my * p.my + this->mz * p.mz;
 }
 
@@ -26,15 +26,15 @@ float& Point::operator[](const int i) {
         return mz;
 }
 
-Point Point::operator+(const Point& p) const {
+Point Point::operator+(const Point &p) const {
     return { this->mx + p.mx, this->my + p.my, this->mz + p.mz };
 }
 
-Point Point::operator*(const Point& p) const {
+Point Point::operator*(const Point &p) const {
     return { this->mx * p.mx, this->my * p.my, this->mz * p.mz };
 }
 
-Point Point::operator-(const Point& p) const {
+Point Point::operator-(const Point &p) const {
     return (*this) + (-p);
 }
 
@@ -51,6 +51,6 @@ Point Point::operator/(float divide) const {
 }
 
 
-std::ostream& operator<<(std::ostream& os, const Point& p) {
+std::ostream &operator<<(std::ostream &os, const Point &p) {
     return os << "(" << p.X() << ", " << p.Y() << ", " << p.Z() << ")";
 }
