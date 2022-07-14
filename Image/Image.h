@@ -20,7 +20,7 @@ private:
 	std::array<int, 2> leftUp;
 	std::array<int, 2> rigthtDown;
 	std::string path;
-public:
+public: 
 
 };
 

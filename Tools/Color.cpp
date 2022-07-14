@@ -19,7 +19,7 @@ float Color::operator[](const int i) const {
         return this->b;
 }
 
-float& Color::operator[](int i) {
+float &Color::operator[](int i) {
     if (i == 0)
         return this->r;
 
@@ -34,7 +34,7 @@ Color Color::operator*(float val) const {
     return Color(r * val, g * val, b * val);
 }
 
-Color& Color::operator+=(Color col) {
+Color &Color::operator+=(Color col) {
     this->r = std::clamp(r + col[0], 0.f, 1.0f);
     this->g = std::clamp(g + col[1], 0.0f, 1.0f);
     this->b = std::clamp(b + col[2], 0.0f, 1.0f);
@@ -47,7 +47,7 @@ void Color::addNoClamp(Color col) {
     this->b += col[2];
 }
 
-Color& Color::operator/=(float var) {
+Color &Color::operator/=(float var) {
     this->r = std::clamp(r / var, 0.f, 1.0f);
     this->g = std::clamp(g / var, 0.0f, 1.0f);
     this->b = std::clamp(b / var, 0.0f, 1.0f);
