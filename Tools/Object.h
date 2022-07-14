@@ -21,13 +21,13 @@ public:
 	~Object() = default;
 
 	virtual Point getTextureCoordinates(const Point &pts) const = 0;
-	virtual Ray getNormal(const Point &pts, const Point &org) const = 0;
-	virtual bool intersect(const Ray &ray, Point &pts) const = 0;
+	virtual Rayon getNormal(const Point &pts, const Point &org) const = 0;
+	virtual bool intersect(const Rayon &ray, Point &pts) const = 0;
 	Material getMaterial(const Point &p) const;
 	bool textured(int id) const;
 	int nbMat() const;
 	void mat(Material m);
-	std::string getName const;
+	std::string getName() const;
 };
 
 
