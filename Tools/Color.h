@@ -47,5 +47,13 @@ public:
 	void addNoClamp(Color col);
 
 	void clear();
+
+	void A(float val) const {
+
+	}
+
+	float A() const {
+		return 1.f;
+	}
 };
 #endif //RAYGEN_COLOR_H

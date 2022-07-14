@@ -51,7 +51,7 @@ public:
 	void operator()(const int &x, const int &y, const Color &color);
 
 	//image type
-	static getImgType(const std::string &filename);
+	static ImageType getImgType(const std::string &filename);
 
 	int getWidth() const {
 		return width;
@@ -78,19 +78,19 @@ public:
 	}
 
 	inline std::array<int, 2> getLeftTop() {
-		return leftTop;
+		return leftUp;
 	}
 
 	inline void setLeftTop(std::array<int, 2> rt) {
-		leftTop = rt;
+		leftUp = rt;
 	}
 
 	inline std::array<int, 2> getRightBottom() {
-		return rightBottom;
+		return rigthtDown;
 	}
 
 	inline void setRightBottom(std::array<int, 2> rb) {
-		rightBottom = rb;
+		rigthtDown = rb;
 	}
 };
 
