@@ -4,8 +4,8 @@
 cmake_minimum_required (VERSION 3.8)
 
 project ("RayGenProjet")
-
+set (CMAKE_CXX_STANDARD 17)
 # Ajoutez une source à l'exécutable de ce projet.
-add_executable (RayGenProjet "RayGenProjet.cpp" "RayGenProjet.h" "Tools/Entity.h" "Tools/Vector.cpp" "Tools/Point.cpp" "Tools/Matrix.h" "Tools/Matrix.cpp" "Tools/Rayon.h" "Tools/Rayon.cpp" "Tools/Entity.cpp")
+add_executable (RayGenProjet "RayGenProjet.cpp" "RayGenProjet.h" "Tools/Entity.h" "Tools/Vector.cpp" "Tools/Point.cpp" "Tools/Matrix.h" "Tools/Matrix.cpp" "Tools/Rayon.h" "Tools/Rayon.cpp" "Tools/Entity.cpp" "Tools/Material.h" "Tools/Color.h" "Tools/Color.cpp")
 
 # TODO: Ajoutez des tests et installez des cibles si nécessaire.
