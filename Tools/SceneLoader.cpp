@@ -31,7 +31,7 @@ std::vector<Object*> SceneLoader::LoadObjects(json ob) {
 			obj["scale"]["y"],
 			obj["scale"]["z"]);
 
-		for (const int& mat : obj["matIds"]) {
+		for (const int& mat : obj["mIds"]) {
 			materialToAdd.push_back(materialList[mat]);
 		}
 
