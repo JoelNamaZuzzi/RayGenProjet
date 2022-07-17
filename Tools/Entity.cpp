@@ -98,3 +98,12 @@ Vector Entity::position()const {
 std::ostream& operator<<(std::ostream& os, const Entity& ent) {
     return os << "Trans mat : " << ent.getMatrix() << std::endl;
 }
+
+void Entity::scaling(Vector factor) {
+    Matrix m;
+    m(0, 0) = factor.X();
+    m(1, 1) = factor.Y();
+    m(2, 2) = factor.Z();
+    neo = m * neo;
+    neoInv = neo.inverse();
+}

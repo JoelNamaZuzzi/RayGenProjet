@@ -5,6 +5,8 @@
 #include <vector>
 
 class Cylinder : public Object {
+public:
+
     Cylinder(Vector trans, Vector rot, Vector sca, std::string n, std::vector<Material> m) : Object(trans, rot, sca, n, std::move(m)) {}
 
     Cylinder(Vector trans, Vector rot, Vector sca, std::vector<Material> m) : Object(trans, rot, sca, "cylinder", std::move(m)) {}

@@ -4,10 +4,10 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include "../Entity.h"
-#include "../Point.h"
-#include "../Material.h"
-#include "../Rayon.h"
+#include "Entity.h"
+#include "Point.h"
+#include "Material.h"
+#include "Rayon.h"
 
 class Object : public Entity {
 private: 
