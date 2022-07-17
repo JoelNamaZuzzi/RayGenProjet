@@ -8,14 +8,15 @@
 #include "Tools/Matrix.h"
 #include "Tools/Entity.h"
 #include "Tools/SceneLoader.h"
+#include "Tools/Camera.h"
 
 int main()
 {
 	SceneLoader loader("Scene/Template.json");
 
-	Camera monSuperProjetNonMdrJaiMenti = loader.LoadCamera();
+	Camera cam = loader.LoadCamera();
 
-	monSuperProjetNonMdrJaiMenti.screenshot("Template", 1080, true, 1);
+	cam.screenshot("Test", 1080, false, 0);
 
 	return 0;
 }

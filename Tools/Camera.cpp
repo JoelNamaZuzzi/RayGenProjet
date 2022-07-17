@@ -28,6 +28,7 @@ void Camera::screenshot(const std::string &name, const int &height, const bool &
                     Point nearestImpact;
                     Object* nearestObj = nullptr;
                     for (Object* o : scene.getObjects()) {
+                        //std::cout << "obj" << std::endl;
                         if (o->intersect(r, impact)) {
                             if (!nearestObj || this->CloserThan(nearestImpact, impact, this->position())) {
                                 nearestObj = o;

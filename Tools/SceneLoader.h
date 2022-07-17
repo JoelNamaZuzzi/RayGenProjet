@@ -25,19 +25,14 @@ class SceneLoader
 
 		json sceneToLoad;
 
-		
-
 	public :
 
-
 		SceneLoader(std::string file) {
-
 			std::ifstream jsonFile(file, std::ifstream::binary);
 			this->sceneToLoad = json::parse(jsonFile);
 		}
 
 		void SetSceneToLoad(std::string);
-
 	
 		template<typename T>
 		std::vector<Object*> LoadObjects(json);

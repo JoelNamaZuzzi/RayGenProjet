@@ -24,7 +24,7 @@ std::vector<Object*> SceneLoader::LoadObjects(json ob) {
 		Vector rotation(
 			obj["rota"]["x"],
 			obj["rota"]["y"],
-			obj["rota"]["z"]);=
+			obj["rota"]["z"]);
 
 		Vector scale(
 			obj["scale"]["x"],
