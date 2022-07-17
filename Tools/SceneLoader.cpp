@@ -1,7 +1,7 @@
 
 #include "SceneLoader.h"
 
-void SceneLoader::SetSceneToLoad(char* f) {
+void SceneLoader::SetSceneToLoad(std::string f) {
 
 	std::ifstream jsonFile(f, std::ifstream::binary);
 	this->sceneToLoad = json::parse(jsonFile);
@@ -24,7 +24,7 @@ std::vector<Object*> SceneLoader::LoadObjects(json ob) {
 		Vector rotation(
 			obj["rota"]["x"],
 			obj["rota"]["y"],
-			obj["rota"]["z"]);
+			obj["rota"]["z"]);=
 
 		Vector scale(
 			obj["scale"]["x"],
@@ -37,7 +37,6 @@ std::vector<Object*> SceneLoader::LoadObjects(json ob) {
 
 		objs.push_back(new T(transform, rotation, scale, materialToAdd));
 		materialToAdd.clear();
-		materialList.clear();
 	}
 
 
@@ -161,4 +160,27 @@ Scene SceneLoader::LoadScene() {
 	lights = LoadLights();
 
 	return Scene(back, ambiante, lights, objects, name);
+}
+
+Camera SceneLoader::LoadCamera() {
+
+	json cam = this->sceneToLoad["Camera"];
+	
+	int height;
+	float focal;
+	Scene scene = LoadScene();
+
+	Vector trans(
+		cam["transform"]["x"],
+		cam["transform"]["y"],
+		cam["transform"]["z"]);
+
+	Vector rot(
+		cam["rota"]["x"],
+		cam["rota"]["y"],
+		cam["rota"]["z"]);
+
+	focal = cam["Focal"];
+	height = cam["Height"];
+	return Camera(focal, height, scene, trans, rot);
 }

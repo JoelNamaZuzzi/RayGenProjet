@@ -13,6 +13,7 @@
 #include "Entity.h"
 #include "Scene.h"
 #include "Light.h"
+#include "Camera.h"
 #include "../Libs/json.hpp"
 
 using json = nlohmann::json;
@@ -28,13 +29,14 @@ class SceneLoader
 
 	public :
 
-		SceneLoader(char* file) {
+
+		SceneLoader(std::string file) {
 
 			std::ifstream jsonFile(file, std::ifstream::binary);
 			this->sceneToLoad = json::parse(jsonFile);
 		}
 
-		void SetSceneToLoad(char*);
+		void SetSceneToLoad(std::string);
 
 	
 		template<typename T>
@@ -47,6 +49,8 @@ class SceneLoader
 		std::vector<Material> LoadMaterials();
 
 		Scene LoadScene();
+
+		Camera LoadCamera();
 		
 
 
