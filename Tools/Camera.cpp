@@ -1,6 +1,4 @@
 #include "Camera.h"
-#include <iostream>
-#include "StringRW.h"
 
 Rayon Camera::getRay(const float x, const float y) {
     Rayon r(x, y, 0, 0, 0, 0);
@@ -52,13 +50,13 @@ void Camera::screenshot(const std::string &name, const int &height, const bool &
     im.write(name + ".jpg");
 }
 
-bool Camera::CloserThan(const Point& oldImpact, const Point& newImpact, const Vector& comparison) const {
+bool Camera::CloserThan(const Point &oldImpact, const Point &newImpact, const Vector &comparison) const {
     float oldDistance = Vector(oldImpact - comparison).norm();
     float newDistance = Vector(newImpact - comparison).norm();
     return newDistance < oldDistance;
 }
 
-Color Camera::getImpactColor(const Rayon& ray, Object* obj, const Point& impact, const bool& displayShadows) {
+Color Camera::getImpactColor(const Rayon &ray, Object *obj, const Point &impact, const bool &displayShadows) {
 
     Material m = obj->getMaterial(impact);
     Rayon normal = obj->getNormal(impact, ray.Origin());
