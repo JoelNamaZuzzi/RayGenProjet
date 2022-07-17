@@ -8,8 +8,6 @@ Rayon Camera::getRay(const float x, const float y) {
     return r.normalized();
 }
 
-//void Camera::screenshot(const std::vector<Object *> &objects, const std::string &filename,
-//                        const int w, const int h) {
 void Camera::screenshot(const std::string &name, const int &height, const bool &displayShadows, const int &ssaa) {
     Image im(height, height, scene.getBackground());
 
