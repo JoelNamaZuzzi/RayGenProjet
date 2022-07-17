@@ -52,8 +52,6 @@ class SceneLoader
 
 		Camera LoadCamera();
 		
-
-
 };
 
 
