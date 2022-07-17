@@ -24,13 +24,15 @@ class SceneLoader
 
 		json sceneToLoad;
 
+		
+
+	public :
+
 		SceneLoader(char* file) {
 
 			std::ifstream jsonFile(file, std::ifstream::binary);
 			this->sceneToLoad = json::parse(jsonFile);
 		}
-
-	public :
 
 		void SetSceneToLoad(char*);
 
