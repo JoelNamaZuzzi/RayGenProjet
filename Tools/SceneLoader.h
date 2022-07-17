@@ -30,10 +30,11 @@ class SceneLoader
 			this->sceneToLoad = json::parse(jsonFile);
 		}
 
+	public :
 
 		void SetSceneToLoad(char*);
 
-
+	
 		template<typename T>
 		std::vector<Object*> LoadObjects(json);
 
