@@ -35,7 +35,7 @@ class SceneLoader
 		void SetSceneToLoad(std::string);
 	
 		template<typename T>
-		std::vector<Object*> LoadObjects(json);
+		std::vector<Object *> LoadObjects(json &obj);
 
 		std::vector<Light*> LoadLights();
 

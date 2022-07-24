@@ -10,7 +10,7 @@ Rayon Camera::getRay(const float x, const float y) {
 
 void Camera::screenshot(const std::string &name, const int &height, const bool &displayShadows, const int &ssaa) {
     Image im(height, height, scene.getBackground());
-
+    //std::cout << "test";
 #pragma omp parallel for
     for (int x = 0; x < height; ++x) {
         for (int y = 0; y < height; ++y) {
@@ -20,24 +20,26 @@ void Camera::screenshot(const std::string &name, const int &height, const bool &
             for (int subX = 0; subX < ssaa; ++subX) {
                 for (int subY = 0; subY < ssaa; ++subY) {
                     float viewportX = ((x + ((float)subX / (float)ssaa)) / ((float)height - 1) * 2) - 1;
-                    //+ 1/(float)subX
                     float viewportY = ((height - y + ((float)subY / (float)ssaa)) / ((float)height - 1) * 2) - 1;
-                    // + 1/(float)subY
                     Rayon r = getRay(viewportX, viewportY);
                     Point impact;
                     Point nearestImpact;
+                    int counter=0;
                     Object* nearestObj = nullptr;
                     for (Object* o : scene.getObjects()) {
                         //std::cout << "obj" << std::endl;
                         if (o->intersect(r, impact)) {
+                            std::cout << "impact" << std::endl;
                             if (!nearestObj || this->CloserThan(nearestImpact, impact, this->position())) {
                                 nearestObj = o;
                                 nearestImpact = impact;
+                                std::cout << "nearestobj" << std::endl;
                             }
                         }
                     }
                     if (nearestObj) {
                         pix.addNoClamp(getImpactColor(r, nearestObj, nearestImpact, displayShadows));
+                        std::cout << getImpactColor(r, nearestObj, nearestImpact, displayShadows)[0] << getImpactColor(r, nearestObj, nearestImpact, displayShadows)[1] << getImpactColor(r, nearestObj, nearestImpact, displayShadows)[2] << std::endl;
                     }
                 }
             }
@@ -46,6 +48,7 @@ void Camera::screenshot(const std::string &name, const int &height, const bool &
 
         }
     }
+    std::cout << "img made" << std::endl;
     im.write(name + ".jpg");
 }
 

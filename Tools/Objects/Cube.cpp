@@ -13,7 +13,7 @@ float Cube::interside(const Rayon &ray, int dim, float offset) const {
     return t;
 }
 
-bool Cube::intersect(const Rayon &ray, Point &pts) const {
+bool Cube::intersect(const Rayon &ray, Point &impact) const {
     Rayon r = globalToLocal(ray).normalized();
     float mint = -1;
     float offsets[] = { -1, 1 };
@@ -27,7 +27,7 @@ bool Cube::intersect(const Rayon &ray, Point &pts) const {
     }
 
     if (mint >= 0) {
-        pts = localToGlobal(r.Origin() + (r.Dir()) * mint);
+        impact = localToGlobal(r.Origin() + (r.Dir()) * mint);
         return true;
     }
 

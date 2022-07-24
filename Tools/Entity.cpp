@@ -59,31 +59,31 @@ void Entity::rotate(const Vector deg) {
     rotateZ(deg.Z());
 }
 
-Rayon Entity::localToGlobal(const Rayon& ray) const {
+Rayon Entity::localToGlobal(const Rayon &ray) const {
     Point origin = localToGlobal(ray.Origin());
     Vector direction = localToGlobal(ray.Dir());
     return Rayon(origin, direction);
 }
 
-Rayon Entity::globalToLocal(const Rayon& ray) const {
+Rayon Entity::globalToLocal(const Rayon &ray) const {
     Point origin = globalToLocal(ray.Origin());
     Vector direction = globalToLocal(ray.Dir());
     return Rayon(origin, direction);
 }
 
-Point Entity::localToGlobal(const Point& pts) const {
+Point Entity::localToGlobal(const Point &pts) const {
     return neo * pts;
 }
 
-Vector Entity::localToGlobal(const Vector& vec) const {
+Vector Entity::localToGlobal(const Vector &vec) const {
     return neo * vec;
 }
 
-Point Entity::globalToLocal(const Point& pts) const {
+Point Entity::globalToLocal(const Point &pts) const {
     return neoInv * pts;
 }
 
-Vector Entity::globalToLocal(const Vector& vec) const {
+Vector Entity::globalToLocal(const Vector &vec) const {
     return neoInv * vec;
 }
 
@@ -95,7 +95,7 @@ Vector Entity::position()const {
     return Vector(neo(0, 3), neo(1, 3), neo(2, 3));
 }
 
-std::ostream& operator<<(std::ostream& os, const Entity& ent) {
+std::ostream& operator<<(std::ostream &os, const Entity &ent) {
     return os << "Trans mat : " << ent.getMatrix() << std::endl;
 }
 

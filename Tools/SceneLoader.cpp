@@ -9,13 +9,13 @@ void SceneLoader::SetSceneToLoad(std::string f) {
 }
 
 template<typename T>
-std::vector<Object*> SceneLoader::LoadObjects(json ob) {
+std::vector<Object *> SceneLoader::LoadObjects(json &ob) {
 
 	std::vector<Object*> objs;
 	std::vector<Material> materialToAdd;
 	std::vector<Material> materialList = LoadMaterials();
 
-	for (const auto obj : ob) {
+	for (const auto &obj : ob) {
 		Vector transform(
 			obj["transform"]["x"],
 			obj["transform"]["y"],
@@ -31,7 +31,7 @@ std::vector<Object*> SceneLoader::LoadObjects(json ob) {
 			obj["scale"]["y"],
 			obj["scale"]["z"]);
 
-		for (const int& mat : obj["mIds"]) {
+		for (const int &mat : obj["mIds"]) {
 			materialToAdd.push_back(materialList[mat]);
 		}
 
@@ -40,13 +40,13 @@ std::vector<Object*> SceneLoader::LoadObjects(json ob) {
 	}
 
 
-
+	//std::cout << "loadobj" << std::endl;
 	return objs;
 }
 
 std::vector<Light*> SceneLoader::LoadLights() {
 	std::vector<Light*> l;
-	for (const auto& light : this->sceneToLoad["Lights"]) {
+	for (const auto &light : this->sceneToLoad["Lights"]) {
 		Color id(
 			light["id"]["r"],
 			light["id"]["g"],
@@ -74,6 +74,7 @@ std::vector<Light*> SceneLoader::LoadLights() {
 
 		l.emplace_back(new Light(id, is, trans, rot, sca));
 	}
+	//std::cout << "loadligth" << std::endl;
 	return l;
 }
 
@@ -120,7 +121,7 @@ std::vector<Material> SceneLoader::LoadMaterials() {
 		}
 
 	}
-	
+	//std::cout << "load mat" << std::endl;
 	return material;
 }
 

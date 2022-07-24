@@ -10,7 +10,6 @@ private:
 	float r;
 	float g;
 	float b;
-	float alpha;
 public: 
 	Color() = default;
 	Color(const Color &col) = default;
@@ -32,7 +31,7 @@ public:
 
 	float operator[](int i) const;
 
-	float& operator[](int i);
+	float &operator[](int i);
 
 	Color operator*(Color c) const;
 
