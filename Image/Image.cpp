@@ -22,7 +22,7 @@ Image::Image(const std::string &filename) {
 
 Image::Image(const Image &img) :Image(img.getWidth(), img.getHeight()) {
 	data = new uint8_t[img.getSize()];
-	for (int i = 0; i < img.getSize(); i++) {
+	for (int i = 0; i < img.getSize(); ++i) {
 		data[i] = img.getData()[i];
 	}
 	leftUp = img.leftUp;

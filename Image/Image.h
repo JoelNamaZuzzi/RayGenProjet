@@ -28,8 +28,8 @@ public:
 		size = width * height * channel;
 		data = new uint8_t[size];
 
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; ++x) {
+			for (int y = 0; y < height; ++y) {
 				(*this)(x, y, col);
 			}
 		}

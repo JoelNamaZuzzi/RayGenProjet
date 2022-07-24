@@ -29,20 +29,21 @@ void Camera::screenshot(const std::string &name, const int &height, const bool &
                     for (Object* o : scene.getObjects()) {
                         //std::cout << "obj" << std::endl;
                         if (o->intersect(r, impact)) {
-                            std::cout << "impact" << std::endl;
+                            //std::cout << "impact" << std::endl;
                             if (!nearestObj || this->CloserThan(nearestImpact, impact, this->position())) {
                                 nearestObj = o;
                                 nearestImpact = impact;
-                                std::cout << "nearestobj" << std::endl;
+                                //std::cout << "nearestobj" << std::endl;
                             }
                         }
                     }
                     if (nearestObj) {
                         pix.addNoClamp(getImpactColor(r, nearestObj, nearestImpact, displayShadows));
-                        std::cout << getImpactColor(r, nearestObj, nearestImpact, displayShadows)[0] << getImpactColor(r, nearestObj, nearestImpact, displayShadows)[1] << getImpactColor(r, nearestObj, nearestImpact, displayShadows)[2] << std::endl;
+                        //std::cout << getImpactColor(r, nearestObj, nearestImpact, displayShadows)[0] << getImpactColor(r, nearestObj, nearestImpact, displayShadows)[1] << getImpactColor(r, nearestObj, nearestImpact, displayShadows)[2] << std::endl;
                     }
                 }
             }
+            //std::cout << "test screen";
             im(y, x, pix /= (float)(ssaa * ssaa));
             pix.clear();
 
