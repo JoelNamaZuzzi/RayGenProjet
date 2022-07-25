@@ -1,4 +1,3 @@
-
 #include "SceneLoader.h"
 
 void SceneLoader::SetSceneToLoad(std::string f) {
@@ -9,13 +8,12 @@ void SceneLoader::SetSceneToLoad(std::string f) {
 }
 
 template<typename T>
-std::vector<Object *> SceneLoader::LoadObjects(json &ob) {
+std::vector<Object*> SceneLoader::LoadObjects(json& ob, std::vector<Material>& materialList) {
 
 	std::vector<Object*> objs;
 	std::vector<Material> materialToAdd;
-	std::vector<Material> materialList = LoadMaterials();
 
-	for (const auto &obj : ob) {
+	for (const auto& obj : ob) {
 		Vector transform(
 			obj["transform"]["x"],
 			obj["transform"]["y"],
@@ -31,7 +29,7 @@ std::vector<Object *> SceneLoader::LoadObjects(json &ob) {
 			obj["scale"]["y"],
 			obj["scale"]["z"]);
 
-		for (const int &mat : obj["mIds"]) {
+		for (const int& mat : obj["mIds"]) {
 			materialToAdd.push_back(materialList[mat]);
 		}
 
@@ -46,7 +44,7 @@ std::vector<Object *> SceneLoader::LoadObjects(json &ob) {
 
 std::vector<Light*> SceneLoader::LoadLights() {
 	std::vector<Light*> l;
-	for (const auto &light : this->sceneToLoad["Lights"]) {
+	for (const auto& light : this->sceneToLoad["Lights"]) {
 		Color id(
 			light["id"]["r"],
 			light["id"]["g"],
@@ -86,14 +84,13 @@ std::vector<std::shared_ptr<Image>> SceneLoader::LoadTextures() {
 	return texture;
 }
 
-std::vector<Material> SceneLoader::LoadMaterials() {
+std::vector<Material> SceneLoader::LoadMaterials(std::vector<std::shared_ptr<Image>>& textures) {
 	std::vector<Material> material;
-	std::vector<std::shared_ptr<Image>> textures = LoadTextures();
 	float shininess;
 	int textId;
-	
 
-	for (const auto &mat : this->sceneToLoad["Materials"]) {
+
+	for (const auto& mat : this->sceneToLoad["Materials"]) {
 
 		Color amb(
 			mat["amb"]["r"],
@@ -125,15 +122,15 @@ std::vector<Material> SceneLoader::LoadMaterials() {
 	return material;
 }
 
-Scene SceneLoader::LoadScene() {
+Scene SceneLoader::LoadScene(std::vector<Material>& materialList) {
 
 	std::vector<Light*> lights;
 	std::vector<Object*> objects;
 	std::string name = this->sceneToLoad["Name"];
-	
+
 	Color back(
-		this->sceneToLoad["Back"]["r"], 
-		this->sceneToLoad["Back"]["g"], 
+		this->sceneToLoad["Back"]["r"],
+		this->sceneToLoad["Back"]["g"],
 		this->sceneToLoad["Back"]["b"]
 	);
 
@@ -143,19 +140,19 @@ Scene SceneLoader::LoadScene() {
 		this->sceneToLoad["Ambiante"]["b"]
 	);
 
-	auto cubes = LoadObjects<Cube>(this->sceneToLoad["Objects"]["Cubes"]);
+	auto cubes = LoadObjects<Cube>(this->sceneToLoad["Objects"]["Cubes"], materialList);
 	objects.insert(objects.end(), cubes.begin(), cubes.end());
 
-	auto plans = LoadObjects<Plan>(this->sceneToLoad["Objects"]["Plans"]);
+	auto plans = LoadObjects<Plan>(this->sceneToLoad["Objects"]["Plans"], materialList);
 	objects.insert(objects.end(), plans.begin(), plans.end());
 
-	auto cylinders = LoadObjects<Cylinder>(this->sceneToLoad["Objects"]["Cylinders"]);
+	auto cylinders = LoadObjects<Cylinder>(this->sceneToLoad["Objects"]["Cylinders"], materialList);
 	objects.insert(objects.end(), cylinders.begin(), cylinders.end());
 
-	auto squares = LoadObjects<Square>(this->sceneToLoad["Objects"]["Squares"]);
+	auto squares = LoadObjects<Square>(this->sceneToLoad["Objects"]["Squares"], materialList);
 	objects.insert(objects.end(), squares.begin(), squares.end());
 
-	auto spheres = LoadObjects<Sphere>(this->sceneToLoad["Objects"]["Spheres"]);
+	auto spheres = LoadObjects<Sphere>(this->sceneToLoad["Objects"]["Spheres"], materialList);
 	objects.insert(objects.end(), spheres.begin(), spheres.end());
 
 	lights = LoadLights();
@@ -163,13 +160,13 @@ Scene SceneLoader::LoadScene() {
 	return Scene(back, ambiante, lights, objects, name);
 }
 
-Camera SceneLoader::LoadCamera() {
+Camera SceneLoader::LoadCamera(std::vector<Material>& materialList) {
 
 	json cam = this->sceneToLoad["Camera"];
-	
+
 	int height;
 	float focal;
-	Scene scene = LoadScene();
+	Scene scene = LoadScene(materialList);
 
 	Vector trans(
 		cam["transform"]["x"],

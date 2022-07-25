@@ -20,33 +20,33 @@ using json = nlohmann::json;
 
 class SceneLoader
 {
-	
-	private :
 
-		json sceneToLoad;
+private:
 
-	public :
+    json sceneToLoad;
 
-		SceneLoader(std::string file) {
-			std::ifstream jsonFile(file, std::ifstream::binary);
-			this->sceneToLoad = json::parse(jsonFile);
-		}
+public:
 
-		void SetSceneToLoad(std::string);
-	
-		template<typename T>
-		std::vector<Object *> LoadObjects(json &obj);
+    SceneLoader(std::string file) {
+        std::ifstream jsonFile(file, std::ifstream::binary);
+        this->sceneToLoad = json::parse(jsonFile);
+    }
 
-		std::vector<Light*> LoadLights();
+    void SetSceneToLoad(std::string);
 
-		std::vector<std::shared_ptr<Image>> LoadTextures();
+    template<typename T>
+    std::vector<Object*> LoadObjects(json& obj, std::vector<Material>& materialList);
 
-		std::vector<Material> LoadMaterials();
+    std::vector<Light*> LoadLights();
 
-		Scene LoadScene();
+    std::vector<std::shared_ptr<Image>> LoadTextures();
 
-		Camera LoadCamera();
-		
+    std::vector<Material> LoadMaterials(std::vector<std::shared_ptr<Image>>& textures);
+
+    Scene LoadScene(std::vector<Material>& materialList);
+
+    Camera LoadCamera(std::vector<Material>& materialList);
+
 };
 
 

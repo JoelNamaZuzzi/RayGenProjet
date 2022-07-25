@@ -1,4 +1,4 @@
-﻿// RayGenProjet.cpp : définit le point d'entrée de l'application.
+﻿// RayGenProjet.cpp : définit le point d'entrée de l'application.
 //
 
 #include "RayGenProjet.h"
@@ -12,19 +12,22 @@
 
 int main()
 {
-	SceneLoader loader("Scene/Template.json");
+    SceneLoader loader("Scene/Template.json");
 
-	Camera cam = loader.LoadCamera();
+    std::vector<std::shared_ptr<Image>> textures = loader.LoadTextures();
+    std::vector<Material> materials = loader.LoadMaterials(textures);
 
-	cam.screenshot("Test", 1080, false, 2);
-	/*Color col = Color(1, 1, 1);
-	std::vector<Material> mat;
-	Material matest= Material(col, col, col, 100);
-	mat.push_back(matest);
-	Cube testcube(Vector(0.0f, 0.0f, 0.0f), Vector(0.0f, 0.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f), mat);
-	if (testcube.intersect(Rayon(0.25, 0.25, 0.0f, -0.90, -0.90, -1.0f), Point(0.25, 0.25, 0.0f))==true) {
-		std::cout << "okay";
-	}*/
+    Camera cam = loader.LoadCamera(materials);
 
-	return 0;
+    cam.screenshot("Test", 1080, false, 2);
+    /*Color col = Color(1, 1, 1);
+    std::vector<Material> mat;
+    Material matest= Material(col, col, col, 100);
+    mat.push_back(matest);
+    Cube testcube(Vector(0.0f, 0.0f, 0.0f), Vector(0.0f, 0.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f), mat);
+    if (testcube.intersect(Rayon(0.25, 0.25, 0.0f, -0.90, -0.90, -1.0f), Point(0.25, 0.25, 0.0f))==true) {
+        std::cout << "okay";
+    }*/
+
+    return 0;
 }
